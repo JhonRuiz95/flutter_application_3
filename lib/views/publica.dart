@@ -83,16 +83,19 @@ class publicacionPerfil extends StatelessWidget {
                             Container(
                               height: responsive.hp(7),
                               width: responsive.wp(75),
-                              color: Colors.grey.shade300, //parte de perfil
+                              //color: Colors.grey.shade300, //parte de perfil
                               child: TextFormField(
+                                style: TextStyle(fontSize: responsive.dp(2.5)),
                                 controller: _comentarioController,
-                                maxLines: 3,
+                                //maxLines: 3,
                                 decoration: InputDecoration(
+                                    fillColor: Colors.grey.shade300,
+                                    filled: true,
                                     contentPadding: const EdgeInsets.only(
                                         left: 10.0, top: 40.0),
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(
-                                            responsive.dp(1))),
+                                            responsive.dp(10))),
                                     hintText: 'Agrega un comentario...',
                                     hintStyle:
                                         GoogleFonts.roboto(fontSize: 18)),
@@ -123,56 +126,6 @@ class publicacionPerfil extends StatelessWidget {
                             ),
                           ), //Text('Linea 140 a 186'),
                         ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(left: 65.0, right: 10.0),
-                          child: Container(
-                              height: 150,
-                              width: size.width * .95,
-                              margin: const EdgeInsets.only(bottom: 10.0),
-                              decoration: BoxDecoration(
-                                  color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  image: const DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(
-                                          'https://thumbs.dreamstime.com/b/paisaje-hermoso-de-la-luna-con-la-silueta-de-la-ciudad-32060787.jpg') //imagen para mostrar
-                                      ))),
-                        ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(left: 65.0, right: 10.0),
-                          child: Container(
-                              height: 150,
-                              width: size.width * .95,
-                              margin: const EdgeInsets.only(bottom: 10.0),
-                              decoration: BoxDecoration(
-                                  color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  image: const DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(
-                                          'http://2.bp.blogspot.com/-fjvjAMS-bYY/U3Y1AK9cYdI/AAAAAAABTZA/yTIIgjpTlzs/s1600/fotografo-indonesia-paisajes-4.jpg') //imagen para mostrar
-                                      ))),
-                        ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(left: 65.0, right: 10.0),
-                          child: Container(
-                            height: 150,
-                            width: size.width * .95,
-                            margin: const EdgeInsets.only(bottom: 10.0),
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(10.0),
-                              image: const DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                      'https://st.depositphotos.com/1003352/2263/i/600/depositphotos_22635647-stock-photo-mountain-lake.jpg') //imagen para mostrar
-                                  ),
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                   ),
@@ -182,7 +135,8 @@ class publicacionPerfil extends StatelessWidget {
                   padding: EdgeInsets.all(responsive.wp(2)),
                   height: responsive.hp(12),
                   width: size.width,
-                  color: Colors.amber,
+                  color: Colors.grey.shade300,
+
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [

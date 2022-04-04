@@ -65,6 +65,8 @@ class comentario extends StatelessWidget {
                                   width: responsive.wp(78),
                                   //color: Colors.grey.shade300, //parte de perfil
                                   child: TextFormField(
+                                    style:
+                                        TextStyle(fontSize: responsive.dp(2.2)),
                                     controller: _comentarioController,
                                     //maxLines: 3,
                                     decoration: InputDecoration(
@@ -77,12 +79,12 @@ class comentario extends StatelessWidget {
                                               responsive.dp(15))),
                                       hintText: 'Buscar personas...',
                                       hintStyle: GoogleFonts.roboto(
-                                        fontSize: 22,
+                                        fontSize: 18,
                                       ),
                                       suffixIcon: IconButton(
                                         //color: Colors.amber,
                                         iconSize: responsive.dp(3),
-                                        icon: Icon(Icons.search),
+                                        icon: const Icon(Icons.search),
                                         onPressed: () {
                                           Fluttertoast.showToast(
                                             msg: 'Buscando',
@@ -100,7 +102,7 @@ class comentario extends StatelessWidget {
                                   child: Text(
                                     'Busquedas recientes.',
                                     style: TextStyle(
-                                      fontSize: responsive.dp(2.8),
+                                      fontSize: responsive.dp(2.4),
                                     ),
                                   ),
                                 )
@@ -111,6 +113,39 @@ class comentario extends StatelessWidget {
                               child: Text(_success == null
                                   ? 'Null'
                                   : (_success ? 'Comentario registrado' : '')),
+                            ),
+                            Row(
+                              children: [
+                                Container(
+                                  alignment: Alignment.topLeft,
+                                  height: responsive.hp(7),
+                                  //color: Colors.amber,
+                                  width: responsive.wp(16), //size.width * .125,
+                                  child: const CircleAvatar(
+                                    radius: 60,
+                                    backgroundImage:
+                                        AssetImage('assets/img/pru1.jpeg'),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: responsive.wp(1),
+                                ),
+                                SizedBox(
+                                  width: responsive.wp(66.4),
+                                  child: Text(
+                                    "Ricardo Andres Carvajal Arenas",
+                                    style: TextStyle(
+                                      fontSize: responsive.wp(5),
+                                      //backgroundColor: Colors.amber,
+                                    ),
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.close),
+                                  iconSize: responsive.dp(3),
+                                )
+                              ],
                             ),
                           ],
                         ),
