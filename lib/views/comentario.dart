@@ -1,0 +1,132 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_application_3/ui/widgets.dart';
+import 'package:flutter_application_3/utils/responsive.dart';
+import 'package:flutter_application_3/widgets/circle.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:form_field_validator/form_field_validator.dart';
+import 'package:google_fonts/google_fonts.dart';
+//import 'package:icon/icon.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
+
+//FirebaseAuth _auth = FirebaseAuth.instance;
+
+class comentario extends StatelessWidget {
+  final String title = 'Comentario';
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _comentarioController = TextEditingController();
+  late final bool _success = false;
+
+  @override
+  Widget build(BuildContext context) {
+    Responsive responsive = new Responsive(context);
+    final double pinkSize = responsive.wp(90);
+    final double orangeSize = responsive.wp(55);
+    final size = MediaQuery.of(context).size;
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Text("Agregar un comentario"),
+      ),
+      body: SafeArea(
+          child: Form(
+              key: _formKey,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: SizedBox(
+                        child: ListView(
+                          children: [
+                            Wrap(
+                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              direction: Axis.horizontal,
+                              children: [
+                                Column(
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.topLeft,
+                                      height: responsive.hp(7),
+                                      //color: Colors.amber,
+                                      width: responsive
+                                          .wp(16), //size.width * .125,
+                                      child: const CircleAvatar(
+                                        radius: 60,
+                                        backgroundImage:
+                                            AssetImage('assets/img/pru1.jpeg'),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Container(
+                                  height: responsive.hp(7),
+                                  width: responsive.wp(78),
+                                  //color: Colors.grey.shade300, //parte de perfil
+                                  child: TextFormField(
+                                    controller: _comentarioController,
+                                    //maxLines: 3,
+                                    decoration: InputDecoration(
+                                      fillColor: Colors.grey.shade300,
+                                      filled: true,
+                                      contentPadding: const EdgeInsets.only(
+                                          left: 15.0, top: 30),
+                                      border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              responsive.dp(15))),
+                                      hintText: 'Buscar personas...',
+                                      hintStyle: GoogleFonts.roboto(
+                                        fontSize: 22,
+                                      ),
+                                      suffixIcon: IconButton(
+                                        //color: Colors.amber,
+                                        iconSize: responsive.dp(3),
+                                        icon: Icon(Icons.search),
+                                        onPressed: () {
+                                          Fluttertoast.showToast(
+                                            msg: 'Buscando',
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                    validator: RequiredValidator(
+                                        errorText: 'El campo es obligatorio'),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(
+                                      responsive.wp(5), responsive.hp(1), 0, 0),
+                                  child: Text(
+                                    'Busquedas recientes.',
+                                    style: TextStyle(
+                                      fontSize: responsive.dp(2.8),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            Container(
+                              alignment: Alignment.center,
+                              child: Text(_success == null
+                                  ? 'Null'
+                                  : (_success ? 'Comentario registrado' : '')),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 5.0,
+                    ),
+                  ],
+                ),
+              ))),
+    );
+  }
+
+  void dispose() {
+    _comentarioController.dispose();
+    dispose();
+  }
+}
