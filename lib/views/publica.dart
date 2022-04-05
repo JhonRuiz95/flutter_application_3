@@ -17,7 +17,14 @@ import 'package:flutter_application_3/utils/responsive.dart';
 
 //FirebaseAuth _auth = FirebaseAuth.instance;
 
-class publicacionPerfil extends StatelessWidget {
+class publicacionPerfil extends StatefulWidget {
+  const publicacionPerfil({Key? key}) : super(key: key);
+
+  @override
+  State<publicacionPerfil> createState() => _publicacionPerfilState();
+}
+
+class _publicacionPerfilState extends State<publicacionPerfil> {
   final String title = 'Publicación';
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _comentarioController = TextEditingController();
@@ -173,7 +180,7 @@ class publicacionPerfil extends StatelessWidget {
                               right: 3.0,
                             ),
                             child: Image.network(
-                              'http://2.bp.blogspot.com/-fjvjAMS-bYY/U3Y1AK9cYdI/AAAAAAABTZA/yTIIgjpTlzs/s1600/fotografo-indonesia-paisajes-4.jpg',
+                              'https://st.depositphotos.com/1003352/2263/i/600/depositphotos_22635647-stock-photo-mountain-lake.jpg',
                             ),
                           ),
                         ],

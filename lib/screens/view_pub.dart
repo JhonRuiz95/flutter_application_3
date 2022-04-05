@@ -11,6 +11,28 @@ class viewPub extends StatefulWidget {
 }
 
 class _viewPubState extends State<viewPub> {
+  //File? imagen = null;
+  //final picker = ImagePicker();
+/*
+  Future selimagen(op) async {
+    var pickedFile;
+
+    if (op == 1) {
+      pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    } else {
+      print('Abriendo foto');
+      pickedFile = await picker.pickImage(source: ImageSource.camera);
+    }
+
+    setState(() {
+      if (pickedFile != null) {
+        imagen = File(pickedFile.path);
+      } else {
+        print("No hay imagen selecionada");
+      }
+    });
+    Navigator.of(context).pop();
+  }*/
   @override
   Widget build(BuildContext context) {
     Responsive resposive = Responsive(context);

@@ -21,15 +21,12 @@ class formPublicacion extends StatefulWidget {
 class _formPublicacionState extends State<formPublicacion> {
   final TextEditingController publicacionController =
       new TextEditingController();
-  File? imagen;
-  Dio dio = Dio();
-  String imagePath = "";
 
   @override
   Widget build(BuildContext context) {
     final Storage storage = Storage();
     final Responsive responsive = Responsive.of(context);
-    final ImagePicker _picker = ImagePicker();
+    //final ImagePicker _picker = ImagePicker();
     final publicacionField = TextFormField(
       //?autofocus: false,
       controller: publicacionController,
@@ -78,14 +75,14 @@ class _formPublicacionState extends State<formPublicacion> {
                 ),
               ),
               IconButton(
-                padding: EdgeInsets.symmetric(vertical: 0),
+                padding: const EdgeInsets.symmetric(vertical: 0),
                 onPressed: () {
                   Fluttertoast.showToast(
                       msg: "Agregando publicación. " +
                           publicacionController.text);
                   publicacionController.text = "";
                 },
-                icon: Icon(Icons.send),
+                icon: const Icon(Icons.send),
               ),
             ],
           ),
@@ -96,6 +93,7 @@ class _formPublicacionState extends State<formPublicacion> {
                   splashRadius: 20,
                   onPressed: () async {
                     Fluttertoast.showToast(msg: "Abriendo galeria");
+
                     final results = await FilePicker.platform.pickFiles(
                       allowMultiple: false,
                       type: FileType.custom,
@@ -113,10 +111,10 @@ class _formPublicacionState extends State<formPublicacion> {
                     final fileName = results.files.single.name;
                     print(path);
                     print(fileName);
-                    //imagePath = fileName;
-                    /*storage //?Carga de imagen a firebase
+
+                    storage //?Carga de imagen a firebase
                         .uploadFile(path, fileName)
-                        .then((value) => print('Imagen cargada.'));*/
+                        .then((value) => print('Imagen cargada.'));
                   },
                   icon: const Icon(Icons
                       .photo)), //SvgPicture.asset('assets/svg/gallery.svg')
@@ -141,12 +139,7 @@ class _formPublicacionState extends State<formPublicacion> {
                   icon: const Icon(Icons.location_on)),
             ],
           ),
-          SizedBox(
-            width: responsive.wp(60),
-            height: responsive.hp(15),
-            child:
-                (imagePath == "") ? Container() : Image.file(File(imagePath)),
-          )
+          //? agregar vizualizador
         ],
       ),
     );
