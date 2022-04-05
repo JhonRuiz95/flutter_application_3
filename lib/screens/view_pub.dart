@@ -96,6 +96,7 @@ class _viewPubState extends State<viewPub> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
+                                  const Icon(Icons.public),
                                 ],
                               ),
                             ],

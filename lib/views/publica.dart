@@ -1,7 +1,10 @@
 //import 'dart:typed_data';
 //import 'dart:ui';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_3/services/storage_service.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 //import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -24,6 +27,7 @@ class publicacionPerfil extends StatelessWidget {
 
   final _keyForm = GlobalKey<FormState>();
   late List<AssetEntity> _mediaList = [];
+  int privacidad = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +35,9 @@ class publicacionPerfil extends StatelessWidget {
     final double pinkSize = responsive.wp(90);
     final double orangeSize = responsive.wp(55);
     final size = MediaQuery.of(context).size;
+    Storage storage = Storage();
     //int _count = 0;
     //String srcImage;
-    int privacidad = 1;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -80,14 +84,14 @@ class publicacionPerfil extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Container(
-                              height: responsive.hp(7),
+                            SizedBox(
+                              height: responsive.hp(14),
                               width: responsive.wp(75),
                               //color: Colors.grey.shade300, //parte de perfil
                               child: TextFormField(
                                 style: TextStyle(fontSize: responsive.dp(2.5)),
                                 controller: _comentarioController,
-                                //maxLines: 3,
+                                maxLines: 3,
                                 decoration: InputDecoration(
                                     fillColor: Colors.grey.shade300,
                                     filled: true,
@@ -95,7 +99,7 @@ class publicacionPerfil extends StatelessWidget {
                                         left: 10.0, top: 40.0),
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(
-                                            responsive.dp(10))),
+                                            responsive.dp(2.5))),
                                     hintText: 'Agrega un comentario...',
                                     hintStyle:
                                         GoogleFonts.roboto(fontSize: 18)),
@@ -179,29 +183,35 @@ class publicacionPerfil extends StatelessWidget {
                 ),
                 const SizedBox(height: 5.0),
                 const Divider(),
-                InkWell(
-                  //onTap: () => ,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5.0),
-                    child: Row(
-                      children: [
-                        //? seleccion de prevacidad
-                        if (privacidad == 1) const Icon(Icons.public_rounded),
-                        if (privacidad == 2) const Icon(Icons.public_outlined),
-                        if (privacidad == 3)
-                          const Icon(Icons.lock_outline_rounded),
-                        const SizedBox(),
-//ahora mostramos el mensaje
-                        const SizedBox(width: 5.0),
-                        if (privacidad == 1)
-                          const Text.rich(
-                              TextSpan(text: 'Todos pueden comentar')),
-                        if (privacidad == 2)
-                          const Text.rich(TextSpan(text: 'Solo seguidores')),
-                        if (privacidad == 3)
-                          const Text.rich(TextSpan(text: 'Nadie')),
-                        const SizedBox(),
-                      ],
+                GestureDetector(
+                  onTap: () {
+                    opciones(context);
+                  },
+                  child: InkWell(
+                    //onTap: () => ,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                      child: Row(
+                        children: [
+                          //? seleccion de privacidad
+                          if (privacidad == 1) const Icon(Icons.public_rounded),
+                          if (privacidad == 2)
+                            const Icon(Icons.public_outlined),
+                          if (privacidad == 3)
+                            const Icon(Icons.lock_outline_rounded),
+                          const SizedBox(),
+                          //ahora mostramos el mensaje
+                          const SizedBox(width: 5.0),
+                          if (privacidad == 1)
+                            const Text.rich(
+                                TextSpan(text: 'Todos pueden comentar')),
+                          if (privacidad == 2)
+                            const Text.rich(TextSpan(text: 'Solo seguidores')),
+                          if (privacidad == 3)
+                            const Text.rich(TextSpan(text: 'Nadie')),
+                          const SizedBox(),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -218,6 +228,28 @@ class publicacionPerfil extends StatelessWidget {
                           onPressed: () async {
                             const Text.rich(TextSpan(
                                 text: 'Permiso para acceder a galeria'));
+                            Fluttertoast.showToast(msg: "Abriendo galeria");
+                            final results = await FilePicker.platform.pickFiles(
+                              allowMultiple: false,
+                              type: FileType.custom,
+                              allowedExtensions: ['png', 'jpg'],
+                            );
+                            if (results == null) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content:
+                                      Text("No hay archivos seleccionados."),
+                                ),
+                              );
+                              return null;
+                            }
+                            final path = results.files.single.path!;
+                            final fileName = results.files.single.name;
+                            print(path);
+                            print(fileName);
+                            storage
+                                .uploadFile(path, fileName)
+                                .then((value) => print('Imagen cargada.'));
                           },
                           icon: const Icon(Icons
                               .camera)), //SvgPicture.asset('assets/svg/gallery.svg')
@@ -244,6 +276,111 @@ class publicacionPerfil extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  opciones(context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: const EdgeInsets.all(0),
+          content: SingleChildScrollView(
+            child: Column(
+              children: [
+                InkWell(
+                  onTap: () {
+                    privacidad = 1;
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(width: 1, color: Colors.grey),
+                      ),
+                    ),
+                    child: Row(
+                      children: const [
+                        Expanded(
+                          child: Text(
+                            "Todos pueden comentar.",
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                        Icon(
+                          Icons.public_rounded,
+                          color: Colors.pink,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    privacidad = 2;
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(width: 1, color: Colors.grey),
+                      ),
+                    ),
+                    child: Row(
+                      children: const [
+                        Expanded(
+                          child: Text(
+                            "Solo amigos.",
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                        Icon(
+                          Icons.person_pin_rounded,
+                          color: Colors.pink,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    privacidad = 3;
+                    //salir(context);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(width: 1, color: Colors.grey),
+                      ),
+                    ),
+                    child: Row(
+                      children: const [
+                        Expanded(
+                          child: Text(
+                            "Solo yo.",
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                        Icon(
+                          Icons.lock,
+                          color: Colors.pink,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 

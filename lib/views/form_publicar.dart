@@ -1,8 +1,14 @@
+import 'dart:ffi';
+import 'dart:io';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/services/storage_service.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_application_3/utils/responsive.dart';
+import 'package:dio/dio.dart';
+import 'package:image_picker/image_picker.dart';
+
 //import 'package:flutter_application_3/widgets/input_comen.dart';
 
 class formPublicacion extends StatefulWidget {
@@ -15,12 +21,15 @@ class formPublicacion extends StatefulWidget {
 class _formPublicacionState extends State<formPublicacion> {
   final TextEditingController publicacionController =
       new TextEditingController();
+  File? imagen;
+  Dio dio = Dio();
+  String imagePath = "";
 
   @override
   Widget build(BuildContext context) {
     final Storage storage = Storage();
     final Responsive responsive = Responsive.of(context);
-
+    final ImagePicker _picker = ImagePicker();
     final publicacionField = TextFormField(
       //?autofocus: false,
       controller: publicacionController,
@@ -44,7 +53,7 @@ class _formPublicacionState extends State<formPublicacion> {
     );
 
     return Positioned(
-      bottom: responsive.hp(28.5),
+      top: responsive.hp(58),
       left: responsive.wp(2),
       right: responsive.wp(2),
       child: Column(
@@ -98,18 +107,20 @@ class _formPublicacionState extends State<formPublicacion> {
                           content: Text("No hay archivos seleccionados."),
                         ),
                       );
-                      return null;
+                      return;
                     }
                     final path = results.files.single.path!;
                     final fileName = results.files.single.name;
                     print(path);
                     print(fileName);
-                    storage
+                    //imagePath = fileName;
+                    /*storage //?Carga de imagen a firebase
                         .uploadFile(path, fileName)
-                        .then((value) => print('Imagen cargada.'));
+                        .then((value) => print('Imagen cargada.'));*/
                   },
                   icon: const Icon(Icons
                       .photo)), //SvgPicture.asset('assets/svg/gallery.svg')
+
               IconButton(
                   splashRadius: 20,
                   onPressed: () async {
@@ -130,6 +141,12 @@ class _formPublicacionState extends State<formPublicacion> {
                   icon: const Icon(Icons.location_on)),
             ],
           ),
+          SizedBox(
+            width: responsive.wp(60),
+            height: responsive.hp(15),
+            child:
+                (imagePath == "") ? Container() : Image.file(File(imagePath)),
+          )
         ],
       ),
     );
