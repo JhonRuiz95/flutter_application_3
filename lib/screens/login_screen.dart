@@ -174,11 +174,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                         height: responsive.hp(5),
                       ),
-                      // SizedBox(
-                      //   width: responsive.wp(ancho),
-                      //   height: responsive.hp(alto),
-                      //   child: emailField,
-                      // ),
+                       SizedBox(
+                         width: responsive.wp(ancho),
+                         height: responsive.hp(alto),
+                         child: emailField,
+                       ),
                       SizedBox(
                         height: responsive.hp(2),
                       ),
