@@ -40,14 +40,16 @@ class _viewPubState extends State<viewPub> {
     final double orangeSize = resposive.wp(55);
     final userName = "Jhon Ruiz";
     final fecha = "2/04/2022";
+    final menPub = "Un hermosa paisaje.";
+    final size = MediaQuery.of(context).size;
 
     Container _contPub = Container(
       //color: Colors.deepPurpleAccent,
       padding: EdgeInsets.all(resposive.dp(2)),
-      width: resposive.wp(80),
+      width: resposive.wp(94.3),
       height: resposive.hp(60),
       decoration: BoxDecoration(
-        color: Colors.amber,
+        color: Colors.orangeAccent,
         borderRadius: BorderRadius.all(
           Radius.circular(
             resposive.dp(7),
@@ -98,6 +100,55 @@ class _viewPubState extends State<viewPub> {
               ),
             ],
           ),
+          //?Parte de la Imagen ↓
+          SizedBox(
+            height: resposive.hp(1),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                menPub,
+                style: TextStyle(fontSize: resposive.dp(1.9)),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: resposive.hp(1),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.black38,
+              borderRadius: BorderRadius.all(
+                Radius.circular(resposive.dp(7)),
+              ),
+            ),
+            width: resposive.wp(90),
+            height: resposive.hp(41),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(1, 1, 1, 1),
+                    child: Container(
+                      //height: resposive.hp(48),
+                      //width: resposive.wp(84.6),
+                      //margin: const EdgeInsets.only(bottom: 10.0),
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(resposive.dp(7)),
+                        image: const DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(
+                                'https://st2.depositphotos.com/1852625/5395/i/600/depositphotos_53954927-stock-photo-beautiful-landscape-of-scottish-nature.jpg') //imagen para mostrar
+                            ),
+                      ),
+                    ), //Text('Linea 140 a 186'),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -140,8 +191,8 @@ class _viewPubState extends State<viewPub> {
                 ),
               ),
               Positioned(
-                top: pinkSize * 0.15,
-                left: resposive.wp(11),
+                top: pinkSize * 0.03,
+                left: resposive.wp(3),
                 child: _contPub,
               ),
               //?
