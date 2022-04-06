@@ -161,7 +161,7 @@ class _viewPubState extends State<viewPub> {
       body: SingleChildScrollView(
         child: Container(
           width: double.infinity,
-          height: resposive.height,
+          height: resposive.height * 0.82,
           color: Colors.white,
           child: Stack(
             //alignment: Alignment.center,
@@ -190,11 +190,17 @@ class _viewPubState extends State<viewPub> {
                   ],
                 ),
               ),
-              Positioned(
-                top: pinkSize * 0.03,
-                left: resposive.wp(3),
-                child: _contPub,
-              ),
+
+              ListView(
+                padding: EdgeInsets.all(resposive.dp(1.5)),
+                children: [
+                  _contPub,
+                  SizedBox(
+                    height: resposive.hp(1),
+                  ),
+                  _contPub,
+                ],
+              )
               //?
             ],
           ),

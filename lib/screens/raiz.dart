@@ -85,7 +85,7 @@ class _raizState extends State<raiz> {
     ];
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.white24,
           //buttonBackgroundColor: Colors.black,
           color: Colors.pink,
           height: resposive.hp(6),
@@ -98,7 +98,7 @@ class _raizState extends State<raiz> {
             });
           }),
       body: Container(
-        color: Colors.white,
+        color: Colors.white10,
         child: Center(
           child: _showPage,
         ),
