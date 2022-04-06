@@ -298,6 +298,8 @@ class _publicacionPerfilState extends State<publicacionPerfil> {
                 InkWell(
                   onTap: () {
                     privacidad = 1;
+                    Navigator.of(context).pop();
+                    setState(() {});
                   },
                   child: Container(
                     padding: const EdgeInsets.all(4),
@@ -327,6 +329,8 @@ class _publicacionPerfilState extends State<publicacionPerfil> {
                 InkWell(
                   onTap: () {
                     privacidad = 2;
+                    Navigator.of(context).pop();
+                    setState(() {});
                   },
                   child: Container(
                     padding: const EdgeInsets.all(4),
@@ -356,7 +360,8 @@ class _publicacionPerfilState extends State<publicacionPerfil> {
                 InkWell(
                   onTap: () {
                     privacidad = 3;
-                    //salir(context);
+                    Navigator.of(context).pop();
+                    setState(() {});
                   },
                   child: Container(
                     padding: const EdgeInsets.all(4),
