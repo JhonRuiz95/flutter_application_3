@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter_application_3/screens/buscar.dart';
 import 'package:flutter_application_3/screens/home_screen.dart';
 import 'package:flutter_application_3/screens/perfilCompleto.dart';
 import 'package:flutter_application_3/screens/view_pub.dart';
 import 'package:flutter_application_3/utils/responsive.dart';
-import 'package:flutter_application_3/views/comentario.dart';
 import 'package:flutter_application_3/views/perfil.dart';
 import 'package:flutter_application_3/views/publica.dart';
 
@@ -18,12 +18,13 @@ class raiz extends StatefulWidget {
 class _raizState extends State<raiz> {
   int _page = 0;
 
-  final perfilCompleto _perfil = new perfilCompleto();
-  final publicacionPerfil _pubPerfil = new publicacionPerfil();
+  final perfilCompleto _perfil = const perfilCompleto();
+  final publicacionPerfil _pubPerfil = const publicacionPerfil();
   final Perfil _perfilBotton = new Perfil();
-  final home_screen _homeScreen = new home_screen();
-  final comentario _comentario = new comentario();
-  final viewPub _viewpub = new viewPub();
+  final home_screen _homeScreen = const home_screen();
+
+  final viewPub _viewpub = const viewPub();
+  final buscarUser _buscarUser = new buscarUser();
 
   Widget _showPage = new home_screen();
   Widget _pageChoser(int page) {
@@ -32,7 +33,7 @@ class _raizState extends State<raiz> {
         return _homeScreen;
 
       case 1:
-        return _comentario;
+        return _buscarUser;
 
       case 2:
         return _viewpub;
