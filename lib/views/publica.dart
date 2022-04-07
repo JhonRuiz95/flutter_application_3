@@ -27,7 +27,7 @@ class publicacionPerfil extends StatefulWidget {
 class _publicacionPerfilState extends State<publicacionPerfil> {
   final String title = 'Publicación';
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _comentarioController = TextEditingController();
+  //final TextEditingController _comentarioController = TextEditingController();
   late final bool _success = false;
   late String userMail;
   //const ejemplo1({Key? key}) : super(key: key);
@@ -65,7 +65,7 @@ class _publicacionPerfilState extends State<publicacionPerfil> {
         child: Form(
           key: _formKey,
           child: Padding(
-            padding: EdgeInsets.all(responsive.dp(1.2)),
+            padding: EdgeInsets.all(responsive.dp(1)),
             child: Column(
               children: [
                 //const SizedBox(height: 10.0),
@@ -97,7 +97,7 @@ class _publicacionPerfilState extends State<publicacionPerfil> {
                               //color: Colors.grey.shade300, //parte de perfil
                               child: TextFormField(
                                 style: TextStyle(fontSize: responsive.dp(2.5)),
-                                controller: _comentarioController,
+                                //controller: _comentarioController,
                                 maxLines: 3,
                                 decoration: InputDecoration(
                                     fillColor: Colors.grey.shade300,
@@ -143,7 +143,7 @@ class _publicacionPerfilState extends State<publicacionPerfil> {
                 ),
                 const SizedBox(height: 5.0),
                 Container(
-                  padding: EdgeInsets.all(responsive.wp(2)),
+                  padding: EdgeInsets.all(responsive.wp(1)),
                   height: responsive.hp(12),
                   width: size.width,
                   color: Colors.grey.shade300,
@@ -225,8 +225,8 @@ class _publicacionPerfilState extends State<publicacionPerfil> {
                 //const Divider(),
                 const SizedBox(height: 5.0),
                 SizedBox(
-                  height: 40,
-                  width: 192, //linea 266
+                  height: responsive.hp(5),
+                  width: responsive.wp(47), //linea 266
                   //child: Icon(Icons.add_a_photo),
                   child: Row(
                     children: [
@@ -394,11 +394,6 @@ class _publicacionPerfilState extends State<publicacionPerfil> {
         );
       },
     );
-  }
-
-  void dispose() {
-    _comentarioController.dispose();
-    dispose();
   }
 
   void _register() async {
