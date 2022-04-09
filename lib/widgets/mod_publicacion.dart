@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_3/model/pub_model.dart';
 import 'package:flutter_application_3/utils/responsive.dart';
 
 class modPublicacion extends StatelessWidget {
-  const modPublicacion({Key? key}) : super(key: key);
+  PubModel pubModel = PubModel();
+  modPublicacion({Key? key, required this.pubModel})
+      : assert(pubModel != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Responsive resposive = Responsive(context);
-    final userName = "Jhon Ruiz";
-    final fecha = "2/04/2022";
-    final menPub = "Un hermosa paisaje.";
+    final userName = pubModel.uName;
+    final fecha = pubModel.fecha;
+    final menPub = pubModel.mensaje;
     final size = MediaQuery.of(context).size;
 
     return Container(
@@ -43,7 +47,7 @@ class modPublicacion extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        userName,
+                        userName!,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: resposive.dp(3),
@@ -55,7 +59,7 @@ class modPublicacion extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        fecha,
+                        fecha!,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: resposive.dp(1.5),
@@ -77,7 +81,7 @@ class modPublicacion extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                menPub,
+                menPub!,
                 style: TextStyle(fontSize: resposive.dp(1.9)),
               ),
             ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_3/model/pub_model.dart';
 import 'package:flutter_application_3/utils/responsive.dart';
 import 'package:flutter_application_3/widgets/circle.dart';
 import 'package:flutter_application_3/widgets/mod_publicacion.dart';
@@ -34,11 +35,14 @@ class _viewPubState extends State<viewPub> {
     });
     Navigator.of(context).pop();
   }*/
+  PubModel pubModel = PubModel();
+
   @override
   Widget build(BuildContext context) {
     Responsive resposive = Responsive(context);
     final double pinkSize = resposive.wp(90);
     final double orangeSize = resposive.wp(55);
+    objeto(pubModel);
 
     return Scaffold(
       appBar: AppBar(
@@ -81,11 +85,15 @@ class _viewPubState extends State<viewPub> {
               ListView(
                 padding: EdgeInsets.all(resposive.dp(1.5)),
                 children: <Widget>[
-                  modPublicacion(),
+                  modPublicacion(
+                    pubModel: pubModel,
+                  ),
                   SizedBox(
                     height: resposive.hp(1),
                   ),
-                  modPublicacion(),
+                  modPublicacion(
+                    pubModel: pubModel,
+                  ),
                 ],
               )
               //?
@@ -94,5 +102,15 @@ class _viewPubState extends State<viewPub> {
         ),
       ),
     );
+  }
+
+  void objeto(PubModel pubModel) {
+    pubModel.id = '1';
+    pubModel.uid = '1058';
+    pubModel.uName = 'Jhon Ruiz';
+    pubModel.mensaje = 'Un buen paisaje.';
+    pubModel.fecha = '07/04/2022';
+    pubModel.hora = '16:36';
+    pubModel.imagen = 'vacio';
   }
 }
