@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/model/user_model.dart';
-import 'package:flutter_application_3/screens/home_screen.dart';
+import 'package:flutter_application_3/screens/raiz.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class registro_screen extends StatefulWidget {
@@ -323,7 +323,7 @@ void singUp(String email, String password ) async {
    .set(userModel.toMap());
    Fluttertoast.showToast(msg: "Cuenta creada");
 
-   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) =>  const home_screen()), (route) => false);
+   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) =>  raiz()), (route) => false);
 
   }
 
