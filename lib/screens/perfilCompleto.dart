@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/model/user_model.dart';
@@ -9,7 +8,6 @@ import 'package:flutter_application_3/ui/widgets.dart';
 import 'package:flutter_application_3/utils/responsive.dart';
 import 'package:flutter_application_3/views/form_publicar.dart';
 import 'package:flutter_application_3/views/informacion_personal.dart';
-import 'package:flutter_application_3/views/mostrar_publicacion.dart';
 import 'package:flutter_application_3/widgets/circle.dart';
 import 'package:flutter_application_3/widgets/icon_container.dart';
 
