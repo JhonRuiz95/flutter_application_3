@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "522427108131",
-    "project_id": "login-3de35",
-    "storage_bucket": "login-3de35.appspot.com"
+    "project_number": "290657649613",
+    "project_id": "redsocial-lumen",
+    "storage_bucket": "redsocial-lumen.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:522427108131:android:c743faa16ef77878b35a96",
+        "mobilesdk_app_id": "1:290657649613:android:ff97e16c217e5d8f47ba84",
         "android_client_info": {
           "package_name": "com.example.flutter_application_3"
         }
       },
       "oauth_client": [
         {
-          "client_id": "522427108131-c16nj0nrjrned9b5f5qrhh6et9t198kj.apps.googleusercontent.com",
+          "client_id": "290657649613-f9su2jf6jfg4ckdvgq860pngmgnd32q9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBH_YAsMAXiKAx7qQFST4G5JT6wf7dPeNg"
+          "current_key": "AIzaSyCLSmMHR2arz5mKKY2h4kIRfp3-8bMP0ZM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "522427108131-c16nj0nrjrned9b5f5qrhh6et9t198kj.apps.googleusercontent.com",
+              "client_id": "290657649613-f9su2jf6jfg4ckdvgq860pngmgnd32q9.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
