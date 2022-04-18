@@ -1,15 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_3/screens/home_screen.dart';
-import 'package:flutter_application_3/screens/perfilCompleto.dart';
 import 'package:flutter_application_3/screens/raiz.dart';
 import 'package:flutter_application_3/screens/registro_screen.dart';
 import 'package:flutter_application_3/screens/reset_screen.dart';
 import 'package:flutter_application_3/utils/responsive.dart';
-import 'package:flutter_application_3/views/form_publicar.dart';
 import 'package:flutter_application_3/widgets/circle.dart';
 import 'package:flutter_application_3/widgets/icon_container.dart';
-import 'package:flutter_application_3/widgets/input_comen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginScreen extends StatefulWidget {
